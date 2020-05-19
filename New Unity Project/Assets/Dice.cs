@@ -42,7 +42,7 @@ public class Dice : MonoBehaviour {
         } else if (whosTurn == -1)
         {
             GameControl.coloureddice(2, randomDiceSide);
-            GameControl.MovePlayer(1);
+            GameControl.MovePlayer(2);
         }
         whosTurn *= -1;
         coroutineAllowed = true;
