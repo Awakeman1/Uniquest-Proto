@@ -36,8 +36,49 @@ public class GameControl : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (player1.GetComponent<FollowThePath>().waypointIndex > 
-            player1StartWaypoint + diceSideThrown)
+        switch(player1.GetComponent<FollowThePath>().waypointIndex){
+            case 5:
+                rollagain();
+                break;
+            case 8:
+                portal();
+                break;
+            case 14:
+                rollagain();
+                break;
+            case 18:
+                rollagain();
+                break;
+            case 24:
+                rollagain();
+                break; 
+            case 26:
+                portal();
+                break;
+        }
+
+        switch(player2.GetComponent<FollowThePath>().waypointIndex){
+            case 5:
+                rollagain();
+                break;
+            case 8:
+                portal();
+                break;
+            case 14:
+                rollagain();
+                break;
+            case 18:
+                rollagain();
+                break;
+            case 24:
+                rollagain();
+                break; 
+            case 26:
+                portal();
+                break;
+        }
+
+        if (player1.GetComponent<FollowThePath>().waypointIndex > player1StartWaypoint + diceSideThrown)
         {
             player1.GetComponent<FollowThePath>().moveAllowed = false;
             player1MoveText.gameObject.SetActive(false);
@@ -45,8 +86,9 @@ public class GameControl : MonoBehaviour {
             player1StartWaypoint = player1.GetComponent<FollowThePath>().waypointIndex - 1;
         }
 
-        if (player2.GetComponent<FollowThePath>().waypointIndex >
-            player2StartWaypoint + diceSideThrown)
+
+      
+        if (player2.GetComponent<FollowThePath>().waypointIndex > player2StartWaypoint + diceSideThrown)
         {
             player2.GetComponent<FollowThePath>().moveAllowed = false;
             player2MoveText.gameObject.SetActive(false);
@@ -54,23 +96,21 @@ public class GameControl : MonoBehaviour {
             player2StartWaypoint = player2.GetComponent<FollowThePath>().waypointIndex - 1;
         }
 
-        if (player1.GetComponent<FollowThePath>().waypointIndex == 
-            player1.GetComponent<FollowThePath>().waypoints.Length)
+//if p1's position is the last in the waypoint array, p1 wins
+        if (player1.GetComponent<FollowThePath>().waypointIndex == player1.GetComponent<FollowThePath>().waypoints.Length)
         {
-            whoWinsTextShadow.gameObject.SetActive(true);
-            whoWinsTextShadow.GetComponent<Text>().text = "Player 1 Wins";
-            gameOver = true;
+            string winner = "Player 1";
+            gameend(winner);
         }
 
-        if (player2.GetComponent<FollowThePath>().waypointIndex ==
-            player2.GetComponent<FollowThePath>().waypoints.Length)
+//if p2's position is the last in the waypoint array, p2 wins
+        if (player2.GetComponent<FollowThePath>().waypointIndex ==  player2.GetComponent<FollowThePath>().waypoints.Length)
         {
-            whoWinsTextShadow.gameObject.SetActive(true);
-            player1MoveText.gameObject.SetActive(false);
-            player2MoveText.gameObject.SetActive(false);
-            whoWinsTextShadow.GetComponent<Text>().text = "Player 2 Wins";
-            gameOver = true;
+            string winner = "Player 2";
+            gameend(winner);
         }
+
+       
     }
 
     public static void MovePlayer(int playerToMove)
@@ -94,44 +134,53 @@ public class GameControl : MonoBehaviour {
          
                 DiceColour = "Red";
                 break;
-
             case 1: 
-          
                 DiceColour = "Yellow";
                 break;
-
             case 2: 
-            
                 DiceColour = "Purple";
                 break;
-
-            case 3: 
-           
+            case 3:    
                 DiceColour = "Blue";
                 break;
-
-            case 4: 
-            
+            case 4:        
                 DiceColour = "Orange";
                 break;
-
-            case 5: 
-            
+            case 5:         
                 DiceColour = "Green";
                 break;
-
-
         }
-
-        Debug.Log("User Rolled a: " + DiceColour);
-        Debug.Log("User Rolled a: " + randomDiceSide);
-
-
-
         return;
-
     }
 
 
+
+    public static void rollagain(){
+        if(player1MoveText.activeSelf == true){
+            Debug.Log("Player 2 Rolls Again");
+        }
+        else if(player2MoveText.activeSelf == true){
+            Debug.Log("Player 2 Rolls Again");
+        }
+        else{
+            Debug.Log("Dunno who Rolls again");
+        }
+        
+    }
+
+
+    public static void portal(){
+        Debug.Log("We've entered a portal. Wow.");
+    }
+
+
+
+    public static void gameend(string winner){
+        whoWinsTextShadow.gameObject.SetActive(true);
+        player1MoveText.gameObject.SetActive(false);
+        player2MoveText.gameObject.SetActive(false);
+        whoWinsTextShadow.GetComponent<Text>().text = winner + " Wins";
+        gameOver = true;
+    }
 
 }
