@@ -37,12 +37,14 @@ public class Dice : MonoBehaviour {
         {
 
             GameControl.coloureddice(1, randomDiceSide);
-            GameControl.MovePlayer(1);
+            GameControl.AskQuestion(1);
+            //GameControl.MovePlayer(1);
 
         } else if (whosTurn == -1)
         {
             GameControl.coloureddice(2, randomDiceSide);
-            GameControl.MovePlayer(2);
+            GameControl.AskQuestion(2);
+           // GameControl.MovePlayer(2);
         }
         whosTurn *= -1;
         coroutineAllowed = true;

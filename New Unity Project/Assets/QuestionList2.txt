@@ -1,0 +1,14 @@
+Berwick campus has a cafe@true
+Berwick campus has four boat ramps@false
+Berwick campus has a multi-level car park@false
+The staff at berwick campus are amazing@true
+Berwick campus has an old airplane hanger@true
+this project is for the marketing team@true
+the answer to this one is true@true
+the answer to this one is false@false
+the cost for parking for students is $30@true
+please answer true for this question@true
+please answer false for this question@false
+Andrew is the greatest person ever@true
+
+
